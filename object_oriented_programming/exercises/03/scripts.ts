@@ -1,12 +1,13 @@
+type Produto = {
+    description: string;
+    amount: number;
+    quantity: number;
+}
+
 class Invoice {
     client: string;
-    isOpen = true;
     totalAmount: number;
-    transactions: {
-        description: string,
-        amount: number,
-        quantity: number
-    }[]
+    transactions: Produto[];
 
     constructor(client: string) {
         this.client = client;
@@ -19,7 +20,6 @@ class Invoice {
     }
 
     closeInvoice() {
-        this.isOpen = false;
         this.totalAmount = this.transactions.reduce((acc, transaction) => {
             return acc + transaction.amount * transaction.quantity;
         }, 0);
